@@ -20,3 +20,6 @@ typedef struct listint
 	struct listint *prev;
 	struct listint *next;
 } listint_t;
+
+/** Sorting algorithm prototypes */
+void insertion_sort_list(listint_t **list);
