@@ -1,4 +1,4 @@
-#ifndef SORT_H
+i#ifndef SORT_H
 #define SORT_H
 
 /**
@@ -23,3 +23,6 @@ typedef struct listint
 
 /** Sorting algorithm prototypes */
 void insertion_sort_list(listint_t **list);
+void print_array(const int *array, size_t size);
+void print_list(const listint_t *list);
+
