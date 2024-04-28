@@ -1,12 +1,7 @@
-i#ifndef SORT_H
+#ifndef SORT_H
 #define SORT_H
 
-/**
- * Predefined C Header files
- */
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include <stddef.h>
 
 /**
  * listint - structure of a doubly linked list
@@ -22,7 +17,9 @@ typedef struct listint
 } listint_t;
 
 /** Sorting algorithm prototypes */
+void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 
+#endif
