@@ -1,5 +1,5 @@
 Repository:
-Sorting Algorithms
+Sorting Algorithms and Big Oh
 Implementated with the C programming Language
 
 Contributors:
