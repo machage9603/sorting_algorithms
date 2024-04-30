@@ -10,13 +10,13 @@
  * Return: an array with a value
  */
 
-void swapped(int **array, ssize_t x, ssize_t y)
+void swapped(int *array, ssize_t x, ssize_t y)
 {
 	int temp;
 
-	temp = (*array)[x];
-	(*array)[x] = (*array)[y];
-	(*array)[y] = temp;
+	temp = array[x];
+	array[x] = array[y];
+	array[y] = temp;
 }
 
 /**
@@ -31,26 +31,24 @@ void swapped(int **array, ssize_t x, ssize_t y)
  */
 size_t subdivision(int *array, ssize_t x, ssize_t y, size_t size)
 {
-	int middle;
-	ssize_t i, j;
+	int middle = array[y];
+	ssize_t i = x, j
 
-	middle = array[y];
-	i = x;
 	for (j = x; j < y; j++)
 	{
 		if (array[j] < middle)
 		{
-			if (i != j)
+			if (array[i] != array[j])
 			{
-				swapped(&array, i, j);
+				swapped(array, i, j);
 				print_array(array, size);
 			}
 			i++;
 		}
 	}
-	if (array[y] < array[i])
+	if (array[i] != array[y])
 	{
-		swapped(&array, i, y);
+		swapped(array, i, y);
 		print_array(array, size);
 	}
 
@@ -68,7 +66,7 @@ size_t subdivision(int *array, ssize_t x, ssize_t y, size_t size)
 
 void sorting(int *array, ssize_t x, ssize_t y, size_t size)
 {
-	ssize_t middle;
+	ssize_t middle = 0;
 
 	if (x < y)
 	{
@@ -87,11 +85,8 @@ void sorting(int *array, ssize_t x, ssize_t y, size_t size)
 
 void quick_sort(int *array, size_t size)
 {
-	ssize_t x = 0;
-	ssize_t y = (size - 1);
-
 	if (!array || size < 2)
 		return;
 
-	sorting(array, x, y, size);
+	sorting(array, 0, size - 1, size);
 }
