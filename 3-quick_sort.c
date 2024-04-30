@@ -78,8 +78,6 @@ void sorting(int *array, ssize_t x, ssize_t y, size_t size)
 	}
 }
 
-
-
 /**
  * quick_sort - quicksort algorithm sorting an int array
  *
