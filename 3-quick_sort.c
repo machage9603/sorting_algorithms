@@ -1,4 +1,6 @@
 #include "sort.h"
+#include <stdio.h>
+#include <unistd.h>
 
 /**
  * swapped - swaps two array values
@@ -32,9 +34,10 @@ void swapped(int *array, ssize_t x, ssize_t y)
 size_t subdivision(int *array, ssize_t x, ssize_t y, size_t size)
 {
 	int middle = array[y];
-	ssize_t i = x, j
+	ssize_t i = x, j;
 
 	for (j = x; j < y; j++)
+		;
 	{
 		if (array[j] < middle)
 		{
