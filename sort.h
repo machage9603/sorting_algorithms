@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 /**
- * listint - structure of a doubly linked list
+ * struct listint - structure of a doubly linked list
  * @n: integer value in the node
  * @listint *prev: The previous value in the list
  * @listint *next: The next value in the list
