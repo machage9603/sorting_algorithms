@@ -1,95 +1,83 @@
 #include "sort.h"
-#include <stdio.h>
-#include <unistd.h>
 
 /**
- * swapped - swaps two array values
- *
- * @array: an integer array
- * @x: first value index
- * @y: second value index
- *
- * Return: an array with a value
+ * swapped - swaps two elements in an array
+ * @a: the first element
+ * @b: the second element
  */
 
-void swapped(int *array, ssize_t x, ssize_t y)
+void swapped(int *a, int *b)
 {
 	int temp;
 
-	temp = array[x];
-	array[x] = array[y];
-	array[y] = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 /**
- * subdivision - chooses an array middle point
- *
- * @array: the input array to sort
- * @x: the subdivision's lowest index
- * @y: the subdivision's highest index
- * @size: the array size
- *
- * Return: index of the partition
+ * subdivision - partition through an array of integers
+ * @array: array of integers
+ * @size: the size of the array
+ * @l: first index of array
+ * @h: last index of array
+ * Return: new index position
  */
-size_t subdivision(int *array, ssize_t x, ssize_t y, size_t size)
+int subdivision(int *array, size_t size, int l, int h)
 {
-	int middle = array[y];
-	ssize_t i = x, j;
+	int pivot = array[h], i = l, j;
 
-	for (j = x; j < y; j++)
-		;
+	for (j = l; j <= h - 1; j++)
 	{
-		if (array[j] < middle)
+		if (array[j] < pivot)
 		{
-			if (array[i] != array[j])
+			if (i != j)
 			{
-				swapped(array, i, j);
+				swapped(&array[i], &array[j]);
 				print_array(array, size);
 			}
 			i++;
 		}
 	}
-	if (array[i] != array[y])
+	if (pivot != array[i])
 	{
-		swapped(array, i, y);
+		swapped(&array[i], &array[h]);
 		print_array(array, size);
 	}
-
 	return (i);
 }
 
 /**
- * sorting - subdivides the array, then sorts each subdivision
- *
- * @array: the input array to sort
- * @x: the subdivision's lowest index
- * @y: the subdivision's highest index
- * @size: the array size
+ * sorting - implement the quick sort algorithm using recursion
+ * @array: the array
+ * @size: the size of the array
+ * @l: first index of the array
+ * @h: the last index of the array
+ * Return: 0
  */
 
-void sorting(int *array, ssize_t x, ssize_t y, size_t size)
+void sorting(int *array, size_t size, int l, int h)
 {
-	ssize_t middle = 0;
+	int i;
 
-	if (x < y)
+	if (l < h)
 	{
-		middle = subdivision(array, x, y, size);
-		sorting(array, x, middle - 1, size);
-		sorting(array, middle + 1, y, size);
+		i = subdivision(array, size, l, h);
+		sorting(array, size, l, i - 1);
+		sorting(array, size, i + 1, h);
 	}
 }
 
 /**
- * quick_sort - quicksort algorithm sorting an int array
- *
- * @array: the integer array
- * @size: the array size
+ * quick_sort - sort an array of integers in ascending order
+ * @array: the array
+ * @size: the size of the array
+ * Return: 0
  */
 
 void quick_sort(int *array, size_t size)
 {
 	if (!array || size < 2)
 		return;
-
-	sorting(array, 0, size - 1, size);
+	sorting(array, size, 0, size - 1);
 }
